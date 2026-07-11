@@ -1,17 +1,23 @@
 let valorAtual = '';
 let operador = '';
 let valorAnterior = '';
+let resultado = '';
 
 function adicionarValor(valor) {
+    if (resultado !== '') {
+        limpar();
+    }
     valorAtual += valor.toString();
     document.getElementById('display').value = valorAtual;
 }
 
 function adicionarOperador(oper) {
-    valorAnterior = valorAtual;
-    operador = oper;
-    valorAtual = '';
-    document.getElementById('display').value = '';
+    if (valorAtual !== '') {
+        valorAnterior = valorAtual;
+        operador = oper;
+        valorAtual = '';
+        document.getElementById('display').value = '';
+    }
 }
 
 function adicionarPonto() {
@@ -22,62 +28,81 @@ function adicionarPonto() {
 }
 
 function calcular() {
-    let resultado;
-    switch (operador) {
-        case '+':
-            resultado = parseFloat(valorAnterior) + parseFloat(valorAtual);
-            break;
-        case '-':
-            resultado = parseFloat(valorAnterior) - parseFloat(valorAtual);
-            break;
-        case '*':
-            resultado = parseFloat(valorAnterior) * parseFloat(valorAtual);
-            break;
-        case '/':
-            resultado = parseFloat(valorAnterior) / parseFloat(valorAtual);
-            break;
-        default:
-            resultado = valorAtual;
+    if (valorAtual !== '' && valorAnterior !== '') {
+        let resultadoTemp;
+        switch (operador) {
+            case '+':
+                resultadoTemp = parseFloat(valorAnterior) + parseFloat(valorAtual);
+                break;
+            case '-':
+                resultadoTemp = parseFloat(valorAnterior) - parseFloat(valorAtual);
+                break;
+            case '*':
+                resultadoTemp = parseFloat(valorAnterior) * parseFloat(valorAtual);
+                break;
+            case '/':
+                resultadoTemp = parseFloat(valorAnterior) / parseFloat(valorAtual);
+                break;
+            default:
+                resultadoTemp = valorAtual;
+        }
+        resultado = resultadoTemp.toString();
+        document.getElementById('display').value = resultado;
+        valorAtual = '';
+        valorAnterior = '';
+        operador = '';
     }
-    document.getElementById('display').value = resultado.toString();
-    valorAtual = resultado.toString();
-    valorAnterior = '';
-    operador = '';
 }
 
 function calcularSen() {
-    let resultado = Math.sin(parseFloat(valorAtual));
-    document.getElementById('display').value = resultado.toString();
-    valorAtual = resultado.toString();
+    if (valorAtual !== '') {
+        let resultadoTemp = Math.sin(parseFloat(valorAtual) * Math.PI / 180);
+        resultado = resultadoTemp.toString();
+        document.getElementById('display').value = resultado;
+        valorAtual = '';
+    }
 }
 
 function calcularCos() {
-    let resultado = Math.cos(parseFloat(valorAtual));
-    document.getElementById('display').value = resultado.toString();
-    valorAtual = resultado.toString();
+    if (valorAtual !== '') {
+        let resultadoTemp = Math.cos(parseFloat(valorAtual) * Math.PI / 180);
+        resultado = resultadoTemp.toString();
+        document.getElementById('display').value = resultado;
+        valorAtual = '';
+    }
 }
 
 function calcularTan() {
-    let resultado = Math.tan(parseFloat(valorAtual));
-    document.getElementById('display').value = resultado.toString();
-    valorAtual = resultado.toString();
+    if (valorAtual !== '') {
+        let resultadoTemp = Math.tan(parseFloat(valorAtual) * Math.PI / 180);
+        resultado = resultadoTemp.toString();
+        document.getElementById('display').value = resultado;
+        valorAtual = '';
+    }
 }
 
 function calcularLog() {
-    let resultado = Math.log(parseFloat(valorAtual));
-    document.getElementById('display').value = resultado.toString();
-    valorAtual = resultado.toString();
+    if (valorAtual !== '') {
+        let resultadoTemp = Math.log10(parseFloat(valorAtual));
+        resultado = resultadoTemp.toString();
+        document.getElementById('display').value = resultado;
+        valorAtual = '';
+    }
 }
 
 function calcularRaiz() {
-    let resultado = Math.sqrt(parseFloat(valorAtual));
-    document.getElementById('display').value = resultado.toString();
-    valorAtual = resultado.toString();
+    if (valorAtual !== '') {
+        let resultadoTemp = Math.sqrt(parseFloat(valorAtual));
+        resultado = resultadoTemp.toString();
+        document.getElementById('display').value = resultado;
+        valorAtual = '';
+    }
 }
 
 function limpar() {
     valorAtual = '';
     valorAnterior = '';
     operador = '';
+    resultado = '';
     document.getElementById('display').value = '';
 }
